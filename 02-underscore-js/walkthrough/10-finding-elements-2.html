@@ -112,10 +112,27 @@
       ];
 
 
-      var wins = _(national_league).find();
+      var wins = _(national_league).find(
+        function(team) {
+          return team.wins > 90;
+        }
+      );
+
+      // .find() returns the first element in a collection which
+      // matches the criteria in the function
 
 
-      var all_wins = _(national_league).filter();
+      var all_wins = _(national_league).filter(
+        function(team) {
+          return team.wins > 90;
+        }
+      );
+
+      // .filter() returns an array of all elements in a collection
+      // which match the criteria in the function
+
+      // in both examples, we are looking for teams who won more
+      // than 90 games
 
     </script>
   </body>

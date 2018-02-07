@@ -112,17 +112,42 @@
       ];
 
 
-      var all_70_wins = _(national_league).every();
+      var all_70_wins = _(national_league).every(
+        function(team) {
+          return team.wins >= 70;
+        }
+      );
+
+      // .every() checks to see if _every_ element in a collection
+      // passes a test; it will return a boolean value
 
 
-      var any_70_wins = _(national_league).any();
+      var any_70_wins = _(national_league).any(
+        function(team) {
+          return team.wins >= 70;
+        }
+      );
+
+      // .any() checks to see if _any_ element in a collection passes
+      // a test; it will return a boolean value
 
 
-      var most_wins = _(national_league).max();
+      var most_wins = _(national_league).max(
+        function(team) {
+          return team.wins;
+        }
+      );
+
+      // .max() returns the highest value in the collection
 
 
-      var fewest_wins = _(national_league).min();
+      var fewest_wins = _(national_league).min(
+        function(team) {
+          return team.wins;
+        }
+      );
 
+      // .min() returns the lowest value in the collection
 
     </script>
   </body>

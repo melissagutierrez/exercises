@@ -112,19 +112,42 @@
       ];
 
 
-      var sorted_by_wins = _(national_league).sortBy();
+      var sorted_by_wins = _(national_league).sortBy(
+        function(team) {
+          return team.wins;
+        }
+      );
+
+      // .sortBy() reorders a collection based on criteria given, from
+      // the lowest to highest values
 
 
-      var grouped_by_division = _(national_league).groupBy();
+      var grouped_by_division = _(national_league).groupBy("division");
+
+      // .groupBy() returns an object grouping related items by the
+      // argument provided
 
 
-      var teams_per_division = _(national_league).countBy();
+      var teams_per_division = _(national_league).countBy("division");
+
+      // .countBy() returns an object with a count of items in each
+      // group based on the argument provided.
 
 
-      var teams_above_500 = _(national_league).countBy();
+      var teams_above_500 = _(national_league).countBy(
+        function(team) {
+          return team.wins > 81;
+        }
+      );
+
+      // NOTE: both .groupBy() and .countBy() accept functions as
+      // criteria if a lone property value is not enough to provide
+      // the results you seek
 
 
       var random = _(national_league).shuffle();
+
+      // .shuffle() ... mass chaos!
 
     </script>
   </body>
