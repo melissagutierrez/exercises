@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flotr2: Bar Chart 02</title>
+  </head>
+
+  <body>
+
+    <div id="chart"></div>
+
+    <script src="js/flotr2.min.js"></script>
+    <script>
+      var wins = [
+        [[0, 7]], [[1, 5]], [[2, 4]], [[3, 3]], [[4, 3]], [[5, 3]], [[6, 1]]
+      ];
+
+      // each team is a data point, hence nesting of arrays to create
+      // the series of points for colors to be applied
+
+      var teams = [
+        [0, "Miami"],
+        [1, "VaTech"],
+        [2, "GaTech"],
+        [3, "Duke"],
+        [4, "Pitt"],
+        [5, "Va"],
+        [6, "N.C."]
+      ];
+    </script>
+
+  </body>
+</html>
