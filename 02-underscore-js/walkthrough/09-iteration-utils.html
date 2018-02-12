@@ -12,6 +12,8 @@
     <script src="js/underscore-min.js"></script>
     <script>
 
+      // nationa_league is an array of objects
+
       var national_league = [
         {
           name: "Arizona Diamondbacks",
@@ -112,13 +114,40 @@
       ];
 
 
-      _(national_league).each();
+      _(national_league).each(
+        function(team) { console.log(team.name) }
+      );
+
+      // .each() executes a function on every element in a collection
+      // it is a functional replacement for a traditional 'for' loop
+
+      // when used with arrays, underscore passes the element, index
+      // and list; when used with objects, underscore passes the values
+      // keys and list.
 
 
-      var win_pct = _(national_league).map();
+      var win_pct = _(national_league).map(
+        function(team) {
+          return Math.round(100 * team.wins / (team.wins + team.losses));
+        }
+      );
+
+      // .map() iterates through a collection and transforms each
+      // element with a function and returns a new collection; in the
+      // above example, the function returns team winning percentages
 
 
-      var teams_above_500 = _(national_league).reduce();
+      var teams_above_500 = _(national_league).reduce(
+        function(count, team) {
+          return count + (team.wins > team.losses)
+        }, 0 // starting point for reduce value
+      );
+
+      // .reduce() iterates through a collection and returns a single
+      // value; the first argument initializes the value, the other
+      // feeds the function to update the first argument's value;
+      // in the above example, the function counts the number of teams
+      // with a win percentage above .500
 
     </script>
   </body>
