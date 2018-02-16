@@ -28,6 +28,35 @@
         [5, "Va"],
         [6, "N.C."]
       ];
+
+      window.onload = function() {
+        Flotr.draw(
+          document.getElementById("chart"),
+          wins,
+          {
+            title: "ACC Coastal Division - Wins by Team, 2017",
+            colors: ["#005030", "#84023C", "#EBB72C", "#00529C", "#0C233F", "#FD5C21", "#99BFE5"],
+            bars: {
+              show: true,
+              barWidth: 0.9,
+              shadowSize: 0,
+              fillOpacity: 1,
+              lineWidth: 0
+            },
+            yaxis: {
+              min: 0,
+              tickDecimals: 0
+            },
+            xaxis: {
+              ticks: teams
+            },
+            grid: {
+              horizontalLines: false,
+              verticalLines: false
+            }
+          }
+        )
+      }
     </script>
 
   </body>

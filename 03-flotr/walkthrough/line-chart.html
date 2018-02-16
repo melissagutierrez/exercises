@@ -67,6 +67,61 @@
         [12, 30],
         [13, 31],
       ];
+
+      window.onload = function() {
+        Flotr.draw(
+          document.getElementById("chart"),
+          [
+            {
+              data: ints,
+              lines: { show: true },
+              shadowSize: 0,
+              color: "#005030",
+              label: "Interceptions"
+            },
+            {
+              data: fumbles,
+              lines: { show: true },
+              shadowSize: 0,
+              color: "#F47321",
+              label: "Fumbles"
+            },
+            {
+              data: turnovers,
+              lines: { show: true },
+              shadowSize: 0,
+              color: "#000000",
+              label: "Total"
+            }
+          ],
+          {
+            title: "Miami Hurricanes, Takeaways - 2017",
+            HtmlText: false,
+            grid: {
+              horizontalLines: true,
+              verticalLines: false,
+            },
+            yaxis: {
+              min: 0,
+              max: 35,
+              tickDecimals: 0,
+              title: "Takeaways",
+              titleAngle: 90 // only works when HtmlText is false
+            },
+            xaxis: {
+              tickDecimals: 0,
+              title: "Game No.",
+              noTicks: turnovers.length
+            }
+          }
+        );
+
+        // the draw method for line charts requires three arguments:
+        // 1. the element where the chart is to be drawn
+        // 2. an array of data to be used
+        //   - this is broken down into objects
+        // 3. options for displaying the chart
+      }
     </script>
 
   </body>

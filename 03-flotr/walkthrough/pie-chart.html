@@ -16,10 +16,41 @@
     <script>
 
       var scoring = [
-        {data: [[0,270]], label: "Offense"},
-        {data: [[1,96]], label: "Special Teams"},
-        {data: [[2,12]], label: "Defense"}
+        {data: [[0,270]], label: "Offense", color: "#005030"},
+        {data: [[1,96]], label: "Special Teams", color: "#F47321"},
+        {data: [[2,12]], label: "Defense", pie: { explode: 50 }, color: "#000000" }
       ];
+
+      window.onload = function() {
+        Flotr.draw(
+          document.getElementById("chart"),
+          scoring,
+          {
+            title: "Miami Hurricanes - Scoring Breakdown, 2017",
+            HtmlText: false,
+            pie: {
+              show: true,
+              shadowSize: 0,
+              explode: 10,
+              fillOpacity: 1,
+              labelFormatter: function(pie, slice) {
+                return slice + " points (" + (slice/pie * 100).toPrecision(3) + "%)";
+              }
+              // pie is the total of all slices
+            },
+            yaxis: {
+              showLabels: false
+            },
+            xaxis: {
+              showLabels: false
+            },
+            grid: {
+              horizontalLines: false,
+              verticalLines: false
+            }
+          }
+        )
+      }
     </script>
 
   </body>
