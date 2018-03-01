@@ -8,9 +8,26 @@
 
   <body>
 
+    <!-- Now that we have structure in place and know our data is good,
+    we can go ahead and build the interactive features into our chart.
+
+    In this case, our user is given the option to turn on/off any lines
+    drawn on the chart.
+
+    This is ideal for when we have multiple data sets for comparing. A
+    user may have an interest in one specific data set, but see how it
+    relates to another. Further, by turning off other data sets, it
+    allows a user to simplify the chart for more clarity. -->
+
     <div id="wrapper">
       <h1>Gross Domestic Product (Current USD in Trillions)</h1>
       <div id="chart"></div>
+
+      <!-- We've removed our 'prototype' control - - we'll rebuild this
+      using JavaScript/jQuery. But we have the previous file to use as
+      our blueprint.
+
+      We have left the description of what these controls do. -->
 
       <div id="controls">
         <p>Select regions to include:</p>
@@ -23,7 +40,12 @@
 
     <script>
 
+      // Because all is handled by jQuery, we place everything inside
+      // our $(function() { }); (jQuery) structure.
+
       $(function() {
+
+        // Our raw data:
 
         var eas = [[1960,0.155758351823196],[1961,0.154708338465889],[1962,0.15736247758304098],[1963,0.17547656667521702],[1964,0.201092708107488],[1965,0.224424367302655],[1966,0.250853905438728],[1967,0.271937157699548],[1968,0.29972272164425096],[1969,0.345245125270376],[1970,0.404076332139288],[1971,0.448189313184516],[1972,0.555899770509207],[1973,0.732943121555639],[1974,0.8446257577965429],[1975,0.92471123440837],[1976,1.01693953894779],[1977,1.21205555652957],[1978,1.52867990978479],[1979,1.66090086317477],[1980,1.7970442001228601],[1981,1.98544470116573],[1982,1.94171995168336],[1983,2.0583072141578502],[1984,2.20601162185217],[1985,2.33743726546771],[1986,3.0443225056739],[1987,3.5579035197859303],[1988,4.28276044965662],[1989,4.48235048932469],[1990,4.690184661696589],[1991,5.28108228407632],[1992,5.7623237053037],[1993,6.45362199757356],[1994,7.19724444570093],[1995,8.1232964264891],[1996,7.80979131929059],[1997,7.5076873747512005],[1998,6.70356675241045],[1999,7.46611962451055],[2000,8.07438034385162],[2001,7.50768899577212],[2002,7.62483790018704],[2003,8.37990440855396],[2004,9.39360115346774],[2005,9.991964308423539],[2006,10.594146717177301],[2007,11.8554473545105],[2008,13.6742820960544],[2009,14.058906333763401],[2010,16.3103027590767],[2011,18.80024281251]];
 
@@ -36,6 +58,23 @@
         var sas = [[1960,0.0478247732151856],[1961,0.0383225958869648],[1962,0.0388874166372837],[1963,0.0433593791506997],[1964,0.049312969226400806],[1965,0.0753559563796575],[1966,0.06323585646800489],[1967,0.0696076427752867],[1968,0.0730763830538578],[1969,0.0802343499298316],[1970,0.086417938527656],[1971,0.0920998975067543],[1972,0.0934253781138569],[1973,0.10710018826296401],[1974,0.12908199902446402],[1975,0.137467192139294],[1976,0.134237452196152],[1977,0.155501137089905],[1978,0.17700129114045499],[1979,0.19822748152728],[1980,0.23950133755200698],[1981,0.253323520001952],[1982,0.26216138766225],[1983,0.27763291864135103],[1984,0.27745895731883696],[1985,0.300252692811231],[1986,0.318138309467094],[1987,0.353457233833646],[1988,0.379356926533544],[1989,0.38176068169897304],[1990,0.411674940336935],[1991,0.367122939515263],[1992,0.38985315145683197],[1993,0.385975784343698],[1994,0.438017870225571],[1995,0.486561796291813],[1996,0.526479595262552],[1997,0.5524917029445889],[1998,0.560339831029537],[1999,0.5987139908417021],[2000,0.622822096306051],[2001,0.637169916840114],[2002,0.671288997652188],[2003,0.78410428905078],[2004,0.9111221170662099],[2005,1.04470909960678],[2006,1.1851178245492],[2007,1.50437408329898],[2008,1.5345956549431599],[2009,1.68265470743355],[2010,2.04610459367539],[2011,2.27108779326152]];
 
         var ssf = [[1960,0.0297069247951595],[1961,0.030839996076188498],[1962,0.0334481365054735],[1963,0.0383823611974043],[1964,0.0373850974886355],[1965,0.0416450915296278],[1966,0.0449663430505477],[1967,0.0443902237290978],[1968,0.0474989382955448],[1969,0.0544475973839497],[1970,0.06407395567512329],[1971,0.0651193411871049],[1972,0.073484524388417],[1973,0.0940813608163604],[1974,0.122647461479448],[1975,0.13510131992306598],[1976,0.146968976317949],[1977,0.161442020615343],[1978,0.18036146588774601],[1979,0.215716578215229],[1980,0.271497709190136],[1981,0.271614311096045],[1982,0.25356040764095],[1983,0.23715413820644102],[1984,0.226106529627964],[1985,0.210647386817865],[1986,0.23276451310215202],[1987,0.27515897477430296],[1988,0.289718130440563],[1989,0.300906379088857],[1990,0.300398027434827],[1991,0.310977090696925],[1992,0.309478936793128],[1993,0.294653422749536],[1994,0.288787623577666],[1995,0.32726678754607397],[1996,0.33979176406183503],[1997,0.3487737245021],[1998,0.326510741354684],[1999,0.327930693483309],[2000,0.33695797490608503],[2001,0.32866718429288705],[2002,0.345227225537291],[2003,0.44651030536218],[2004,0.557848242700248],[2005,0.653503724718657],[2006,0.7602800186887111],[2007,0.8820445340076181],[2008,0.999925234189761],[2009,0.93629057710226],[2010,1.14097465468216],[2011,1.28322590173042]];
+
+
+        // Our data, organized in a series, with options for Flot:
+
+        // A quick note about this data. In our previous example, it was
+        // unorganized. The order of the legend and the lines did not
+        // match. Whenever we're presenting information we want to
+        // eliminate unnecessary thinking for our user. If the legend
+        // and lines match up, we've made the chart easier for our user
+        // to consume and understand quicker.
+
+        // I believe there are options in Flot to allow you to format
+        // the legend without having to re-arrange data. However,
+        // because our set of data sets are so few, we can just make
+        // this adjustment ourselves, let's do that. (The data sets
+        // have been re-arranged in order of how they appear on the
+        // chart so our legend will match.)
 
         var source = [
           {
@@ -76,7 +115,137 @@
           }
         ];
 
+
+        // First, we need to draw the chart.
+
+        // The .map() function is loop-like in that it iterates over
+        // an array, but makes a change to the array item.
+
+        // The .grep() function removes items from an array which
+        // pass a test.
+
+        // Here, we're testing our 'source' array to see if the 'show'
+        // property is true. If so, return the data and color (which is
+        // needed to show the line on the graph).
+
+        // This code below builds the chart we initially see when the
+        // page loads and stores all the data in a variable (plotObj)
+        // which we'll modify in the future.
+
+        var plotObj = $.plot($("#chart"),
+          $.map(
+            $.grep(source, function(obj) { return obj.show; }),
+            // find (source, pattern)
+            function(obj) { return { data: obj.data, color: obj.color }}
+            // modify the array
+          )
+        );
+
+
+        // Next, let's build our controls for the user. If you need to,
+        // refer to the prototype we built in the previous example.
+
+        // For each item in the 'source' array, we need to:
+
+        // 1. Create a checkbox <input> for the user to toggle.
+        //    Note we've added the index number to an id for each
+        //    <input>. We'll need this later.
+
+        // 2. If the region 'show' property is true, make sure
+        //    the input's 'checked' attribute is true.
+
+        // Building on a thought from class: "Why not include the
+        // 'checked' attribute when we build the array?"
+
+        // What if you don't want to show all data sets on load? You
+        // may have some values which are 'show: false' and only appear
+        // when a user explicitly sets this.
+
+        // Another example would be to have no lines appear on initial
+        // load, but have the chart build out through an animation. In
+        // this case, all 'show' data (and checkboxes) would need to be
+        // set to false, then changed incrementally.
+
+        // But we digress...
+
+        // 3. Build a <label> tag, appending our span (which contains
+        //    the line color) and label.
+
+        // 4. Append each <label> to our <form>.
+
+        $.each(source, function(index, region) {
+
+          var input = $("<input>").attr("type", "checkbox").attr("id","chk-" + index);
+
+          if(region.show) {
+            $(input).prop("checked", true);
+          }
+
+          var span = $("<span>").css({ "background-color": region.color });
+
+          var label = $("<label>").append(input).append(span).append(region.label);
+
+          $("#controls form").append(label);
+        });
+
+
+        // We now need to build the interaction.
+
+        // When an <input> is clicked, the browser will return an
+        // event. The event tells us which checkbox (the target) has
+        // been clicked, i.e. chk-0, chk-1, etc.
+
+        // The index variable takes the event target id and strips the
+        // number from the end using the substr() method.
+        // i.e. chk-0 --> '0'
+
+        // We can then use this number to identify the data set in the
+        // source array (i.e. source[0]) and target the 'show' property
+        // in said set (i.e. source[0].show). We set this value to the
+        // opposite of what already exists to create the toggle.
+        // i.e. show: true --> show: false (or false --> true)
+
+        // We then map these changes to the source array, creating
+        // an array of data which only contains 'checked' items.
+
+
+        $("input").click(function(event) {
+          index = event.target.id.substr(4);
+          source[index].show = !source[index].show;
+
+          $.map(source, function(obj) {
+            return { data: obj.data, color: obj.color };
+          });
+
+          // .map() will return a new version of source, where the
+          // 'show' property in each data set will reflect whether
+          // the checkbox is selected or not.
+
+          // Makes some changes to the control, then view the console
+          // to see this in action. Notice a box you have unchecked
+          // now returns 'show: false'
+
+          console.log(source);
+
+          // Once we've created this modified array, we need to reset
+          // the data being displayed on our chart. Remember, we have
+          // contained this in plotObj. We can use this variable and
+          // use setData() (a flot function) to apply these new changes.
+
+          plotObj.setData(
+            $.map(
+              $.grep(source, function(obj) { return obj.show } ),
+              function(obj) { return { data: obj.data, color: obj.color }; }
+            )
+          );
+
+          // Once the data is (re)set, we redraw the chart.
+
+          plotObj.draw();
+        });
       });
+
     </script>
+
   </body>
 </html>

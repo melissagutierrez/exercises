@@ -8,12 +8,54 @@
 
   <body>
 
+    <!-- Before we get into building out our interactive chart, let's
+    prototype this to see what we're going to need. We obviously want
+    to see our data is prepared correctly - - so the chart itself
+    renders without any interactive features. We want to make sure the
+    information communicated in the chart (title, labels) are clear.
+
+    Once we feel comfortable with our prototype, we can move on to
+    adding the interactive layer (detailed in
+    selecting-content-02.html).
+
+    For now, begin reading the comments in the <script>. Then return
+    here to read about our controls. -->
+
     <div id="wrapper">
       <h1>Gross Domestic Product (Current USD in Trillions)</h1>
       <div id="chart"></div>
 
+      <!-- Once our chart is drawn, we want to prototype what our
+      controls might look like. We're going to rebuild these using
+      JavaScript/jQuery, so here we'll create a model in HTML for
+      future reference. -->
+
       <div id="controls">
-        <form></form>
+
+        <!-- The purpose of a list of checkboxes may not be initially
+        clear to the user. We should provide a concise explanation of
+        what our controls do. -->
+
+        <p>Select regions to include:</p>
+
+        <!-- Within our form, we are going to create a checkbox input
+        for the user to toggle which line in the chart should be shown.
+        We'll combine our legend - - colors, labels - - with this to
+        make the information more concise.
+
+        I building using one example and tinkering with that. Do we
+        want the color legend before or after the checkbox? Before or
+        after the text? These are choices you may want to play with
+        to make things clearer for the users ... and there's no sense
+        in building one for each data set!
+
+        The book will have us build the CSS into each style of <span>.
+        All but one of those (the color) will be consistent. We're
+        better off putting those static values in a style sheet. -->
+
+        <form>
+          <label><input type="checkbox"><span style="background-color: #006363"></span> Sub-Saharan Africa</label>
+        </form>
       </div>
     </div>
 
@@ -74,6 +116,27 @@
             label: "South Asia"
           }
         ];
+
+        // Let first check to see our data is structured correctly and
+        // the chart is rendered.
+
+        // Flot is similar to plotr in that it seeks the arguments of
+        // where the chart ot be drawn, what is the data source and
+        // what options we want the chart to have.
+
+        $.plot(
+          $("#chart"),
+          source,
+          {
+            legend:
+              { show: true,
+                position: "nw"
+              }
+          }
+        );
+
+        // Our chart appears! Yay! Let's take a look at the HTML...
+        // (scroll up)
 
       }); // end jQuery
     </script>
